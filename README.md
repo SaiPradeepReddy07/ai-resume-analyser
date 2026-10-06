@@ -33,10 +33,11 @@ to the local backend.
 
 ## Deploy to Render
 
-The root `render.yaml` blueprint creates the web service and a managed
-PostgreSQL database. The API serves the built React application and its
-client-side routes from the same HTTPS origin. Render generates the JWT
-signing key and injects the database connection string.
+The root `render.yaml` blueprint creates the Docker-based web service and a
+managed PostgreSQL database. Docker builds the React frontend and packages it
+with the FastAPI backend. The API serves the frontend and its client-side
+routes from the same HTTPS origin. Render generates the JWT signing key and
+injects the database connection string.
 
 1. Push this repository to GitHub.
 2. In Render, choose **New** → **Blueprint** and connect the repository.
