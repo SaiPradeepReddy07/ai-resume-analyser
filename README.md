@@ -33,11 +33,16 @@ to the local backend.
 
 ## Deploy to Render
 
-The root `render.yaml` blueprint creates the Docker-based web service and a
+The root `render.yaml` blueprint creates a free Docker-based web service and
 managed PostgreSQL database. Docker builds the React frontend and packages it
 with the FastAPI backend. The API serves the frontend and its client-side
 routes from the same HTTPS origin. Render generates the JWT signing key and
 injects the database connection string.
+
+The free web service may sleep when idle. Render's free PostgreSQL database
+expires after 30 days, so it is suitable for a demo, not durable production
+data. Upgrade the database to a paid plan before using it for data you need to
+keep.
 
 1. Push this repository to GitHub.
 2. In Render, choose **New** → **Blueprint** and connect the repository.

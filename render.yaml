@@ -2,13 +2,13 @@ databases:
   - name: ai-resume-analyzer-db
     databaseName: ai_resume_analyzer
     user: ai_resume_analyzer
-    plan: basic-256mb
+    plan: free
 
 services:
   - type: web
     name: ai-resume-analyzer
     runtime: docker
-    plan: starter
+    plan: free
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /health
