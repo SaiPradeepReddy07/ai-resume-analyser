@@ -13,9 +13,15 @@ class Settings(BaseSettings):
     DEBUG: bool = True
 
     # Database: Defaults to local SQLite if DATABASE_URL is not set in environment.
-    # For Supabase/Postgres, set SUPABASE_DATABASE_URL or DATABASE_URL.
+    # Supabase/Postgres can be enabled by setting SUPABASE_DATABASE_URL or DATABASE_URL.
     DATABASE_URL: str = "sqlite:///./resume_analyzer.db"
     SUPABASE_DATABASE_URL: str | None = None
+
+    # Supabase project settings
+    SUPABASE_URL: str | None = None
+    SUPABASE_ANON_KEY: str | None = None
+    SUPABASE_SERVICE_ROLE_KEY: str | None = None
+    SUPABASE_JWT_SECRET: str | None = None
 
     # JWT Authentication Settings
     JWT_SECRET_KEY: str = "super-secret-key-change-in-production-resume-analyzer-2026"

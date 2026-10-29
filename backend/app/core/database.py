@@ -3,7 +3,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from app.core.config import settings
 
 # Configure SQLite vs PostgreSQL engine arguments
-is_sqlite = settings.DATABASE_URL.startswith("sqlite")
+is_sqlite = settings.database_url.startswith("sqlite")
 
 engine_kwargs = {}
 if is_sqlite:
@@ -17,7 +17,7 @@ else:
         "pool_pre_ping": True,
     })
 
-engine = create_engine(settings.DATABASE_URL, **engine_kwargs)
+engine = create_engine(settings.database_url, **engine_kwargs)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

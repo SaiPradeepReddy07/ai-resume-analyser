@@ -31,6 +31,31 @@ npm run dev
 Open `http://127.0.0.1:5173`. The Vite development server proxies API requests
 to the local backend.
 
+## Supabase setup
+
+This project supports both local SQLite development and a real PostgreSQL/Supabase
+production database.
+
+1. Create a new Supabase project from the Supabase dashboard.
+2. Copy your project URL and keys from:
+   - Project Settings → API
+   - Project Settings → Database
+3. Create a local `.env` file in `backend/` using `backend/.env.example` as a template.
+4. Set at least these values:
+
+```env
+SUPABASE_URL="https://<project-ref>.supabase.co"
+SUPABASE_ANON_KEY="<anon-key>"
+SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
+SUPABASE_DATABASE_URL="postgresql://postgres:<password>@db.<project-ref>.supabase.co:5432/postgres"
+```
+
+If you are using Supabase for the app database, set `SUPABASE_DATABASE_URL` or `DATABASE_URL`.
+The app will automatically prefer `SUPABASE_DATABASE_URL` when present.
+
+The Supabase client is exposed as `app.core.supabase.supabase` and the admin client as
+`app.core.supabase.supabase_admin` for database or auth operations.
+
 ## Deploy to Render
 
 The root `render.yaml` blueprint creates a free Docker-based web service and
