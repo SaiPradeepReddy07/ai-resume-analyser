@@ -12,8 +12,10 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     DEBUG: bool = True
 
-    # Database: Defaults to local SQLite if DATABASE_URL is not set in environment
+    # Database: Defaults to local SQLite if DATABASE_URL is not set in environment.
+    # For Supabase/Postgres, set SUPABASE_DATABASE_URL or DATABASE_URL.
     DATABASE_URL: str = "sqlite:///./resume_analyzer.db"
+    SUPABASE_DATABASE_URL: str | None = None
 
     # JWT Authentication Settings
     JWT_SECRET_KEY: str = "super-secret-key-change-in-production-resume-analyzer-2026"
@@ -26,6 +28,10 @@ class Settings(BaseSettings):
     # File Upload Constraints
     MAX_FILE_SIZE_MB: int = 5
     ALLOWED_EXTENSIONS: str = ".pdf"
+
+    @property
+    def database_url(self) -> str:
+        return self.SUPABASE_DATABASE_URL or self.DATABASE_URL
 
     @property
     def cors_origins_list(self) -> List[str]:
